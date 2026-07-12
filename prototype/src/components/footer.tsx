@@ -16,24 +16,24 @@ export function Footer() {
         <div className="mt-16 grid gap-0 border-t border-white/10 md:grid-cols-3">
           <Link
             href="/catalog"
-            className="group flex items-center justify-between border-b border-white/10 px-2 py-6 hover:bg-white/5 md:border-b-0 md:border-r md:px-6"
+            className="group flex items-center justify-between border-b border-white/10 px-2 py-6 text-white transition-colors duration-300 hover:bg-white hover:text-axis-navy md:border-b-0 md:border-r md:px-6"
           >
             <span className="text-xl font-semibold md:text-2xl">Catalog</span>
-            <ArrowUpRight className="h-5 w-5 text-axis-blue transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="h-5 w-5 text-axis-blue transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
           <Link
             href="/#company"
-            className="group flex items-center justify-between border-b border-white/10 px-2 py-6 hover:bg-white/5 md:border-b-0 md:border-r md:px-6"
+            className="group flex items-center justify-between border-b border-white/10 px-2 py-6 text-white transition-colors duration-300 hover:bg-white hover:text-axis-navy md:border-b-0 md:border-r md:px-6"
           >
             <span className="text-xl font-semibold md:text-2xl">Company</span>
-            <ArrowUpRight className="h-5 w-5 text-axis-blue transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="h-5 w-5 text-axis-blue transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </Link>
           <a
             href="#contact"
-            className="group flex items-center justify-between bg-white px-2 py-6 text-axis-navy hover:bg-axis-bg md:px-6"
+            className="group flex items-center justify-between px-2 py-6 text-white transition-colors duration-300 hover:bg-white hover:text-axis-navy md:px-6"
           >
             <span className="text-xl font-semibold md:text-2xl">Contact sales</span>
-            <ArrowUpRight className="h-5 w-5 text-axis-blue transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="h-5 w-5 text-axis-blue transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </a>
         </div>
 

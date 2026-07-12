@@ -19,9 +19,9 @@ export default function Home() {
         <HeroScroll />
       </div>
       <StatsBand />
-      <FeaturedProducts />
       <Manifesto />
       <Capabilities />
+      <FeaturedProducts />
       <HubNetwork />
       <Certifications />
       <CtaBand />

@@ -100,13 +100,18 @@ export function StatsBand() {
 
 export function Manifesto() {
   return (
-    <section id="company" className="bg-white px-4 py-20 md:px-16 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[280px_1fr]">
-        <div className="text-xs font-semibold uppercase tracking-[0.32em] text-axis-mid md:sticky md:top-24 md:self-start">
-          Why AXIS exists
+    <section id="company" className="bg-white px-4 py-20 md:px-16 md:py-28">
+      <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
+        <div className="md:sticky md:top-24 md:self-start">
+          <div className="mb-3 text-xs font-semibold uppercase tracking-widest text-axis-mid">
+            Why AXIS exists
+          </div>
+          <h2 className="text-4xl font-black tracking-tight text-axis-navy md:text-5xl">
+            Forty years of catalogs. Zero tolerance for downtime.
+          </h2>
         </div>
         <Reveal>
-          <div className="space-y-6 text-xl leading-relaxed text-axis-ink md:text-2xl">
+          <div className="space-y-6 text-lg leading-relaxed text-axis-mid md:text-xl">
             <p>
               Industrial distribution hasn&apos;t changed in forty years: paper
               catalogs turned into PDF catalogs, and phone tag turned into email
