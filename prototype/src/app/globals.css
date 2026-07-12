@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-axis-bg: #e8eef7;
+  --color-axis-bg-soft: #f2f5fa;
+  --color-axis-navy: #0a1220;
+  --color-axis-ink: #1e293b;
+  --color-axis-mid: #64748b;
+  --color-axis-line: #cbd5e1;
+  --color-axis-accent: #f97316;
+  --color-axis-blue: #1e40af;
+  --color-axis-cyan: #22d3ee;
+
+  /* Softer corner language: bump the whole radius scale */
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a1220;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+body {
+  min-height: 100vh;
+}
