@@ -1,0 +1,44 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-story",
+      "blocks": {
+        "chapter-1": {
+          "type": "chapter",
+          "settings": {
+            "title": "Sourcing",
+            "body": "One call triggers verified sourcing. Craft, spec, and delivery window route directly to matched suppliers. No RFQ ping-pong."
+          }
+        },
+        "chapter-2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Verification",
+            "body": "Every SKU passes spec compliance, provenance check, and quality gate before it enters your dispatch queue."
+          }
+        },
+        "chapter-3": {
+          "type": "chapter",
+          "settings": {
+            "title": "Dispatch",
+            "body": "Route-optimized dispatch from nearest hub. Real-time SKU tracking. Consolidated shipping to cut freight cost."
+          }
+        },
+        "chapter-4": {
+          "type": "chapter",
+          "settings": {
+            "title": "Delivery",
+            "body": "Site-ready delivery with QR-tagged manifest. Every crate arrives labeled, sorted, and audit-ready."
+          }
+        }
+      },
+      "block_order": ["chapter-1", "chapter-2", "chapter-3", "chapter-4"],
+      "settings": {}
+    },
+    "main": {
+      "type": "hello-world",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "main"]
+}

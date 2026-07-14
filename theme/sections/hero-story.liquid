@@ -1,0 +1,317 @@
+{% comment %}
+  Hero Story 3D — pinned scroll-driven storytelling hero with a 3D model.
+  Port of the Next.js prototype hero (hero-scroll.tsx + scene-3d.tsx).
+  De-risk target: Theme Store Lighthouse compliance.
+{% endcomment %}
+
+{%- assign draco_path = 'draco_decoder.wasm' | asset_url | split: 'draco_decoder.wasm' | first -%}
+
+<section
+  id="HeroStory-{{ section.id }}"
+  class="hero-story"
+  data-hero-story
+  data-model-url="{{ 'drill.glb' | asset_url }}"
+  data-draco-path="{{ draco_path }}"
+  data-scroll-length="{{ section.settings.scroll_length }}"
+  data-enable-3d="{{ section.settings.enable_3d }}"
+>
+  <div class="hero-story__scene" data-hero-canvas aria-hidden="true"></div>
+
+  <div class="hero-story__loader" data-hero-loader aria-hidden="true">
+    <div class="hero-story__loader-label" data-hero-loader-label>LOADING ASSET — 0%</div>
+    <div class="hero-story__loader-track">
+      <div class="hero-story__loader-bar" data-hero-loader-bar></div>
+    </div>
+  </div>
+
+  <div class="hero-story__center">
+    <h1 class="hero-story__headline" data-hero-headline>
+      {{ section.settings.heading }}
+    </h1>
+    <p class="hero-story__sub" data-hero-sub>{{ section.settings.subheading }}</p>
+    <div class="hero-story__hint" data-hero-hint>{{ section.settings.hint }}</div>
+  </div>
+
+  <div class="hero-story__chapters" data-hero-chapters>
+    {%- for block in section.blocks -%}
+      <div class="hero-story__chapter" data-chapter {{ block.shopify_attributes }}>
+        <span class="hero-story__num" data-chapter-num>
+          {{- forloop.index | prepend: '0' | slice: -2, 2 -}}
+        </span>
+        <div class="hero-story__chapter-text">
+          <h3 class="hero-story__title" data-chapter-title>{{ block.settings.title }}</h3>
+          <div class="hero-story__body" data-chapter-body>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .hero-story {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    background: #e8eef7;
+  }
+  .hero-story__scene {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-story__scene canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .hero-story__loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-bottom: 6rem;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+  .hero-story__loader.is-done {
+    opacity: 0;
+  }
+  .hero-story__loader-label {
+    font-family: ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: #64748b;
+  }
+  .hero-story__loader-track {
+    height: 1px;
+    width: 10rem;
+    overflow: hidden;
+    background: #cbd5e1;
+  }
+  .hero-story__loader-bar {
+    height: 100%;
+    width: 0%;
+    background: #0a1220;
+    transition: width 0.2s;
+  }
+  .hero-story__center {
+    pointer-events: none;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+  .hero-story__headline {
+    max-width: 64rem;
+    margin: 0;
+    font-size: clamp(2.5rem, 9vw, 7.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    color: #0a1220;
+    will-change: transform;
+  }
+  .hero-story__sub {
+    margin: 2rem 0 0;
+    max-width: 36rem;
+    font-size: 1.125rem;
+    color: #64748b;
+  }
+  .hero-story__hint {
+    margin-top: 3rem;
+    border-bottom: 1px solid #cbd5e1;
+    padding-bottom: 0.5rem;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: #64748b;
+  }
+  .hero-story__chapters {
+    position: absolute;
+    bottom: 2rem;
+    left: 1rem;
+    z-index: 20;
+    max-width: 28rem;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  @media (min-width: 768px) {
+    .hero-story__chapters {
+      bottom: 4rem;
+      left: 4rem;
+    }
+  }
+  .hero-story__chapter {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.625rem 0;
+  }
+  .hero-story__num {
+    display: flex;
+    height: 2rem;
+    min-width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #64748b;
+    background: rgba(255, 255, 255, 0);
+  }
+  .hero-story__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #64748b;
+  }
+  .hero-story__body {
+    overflow: hidden;
+    opacity: 0;
+    height: 0;
+  }
+  .hero-story__body p {
+    margin: 0.5rem 0 0;
+    max-width: 20rem;
+    border-left: 2px solid #cbd5e1;
+    padding-left: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.625;
+    color: #64748b;
+  }
+  /* Static fallback: no pin, no 3D */
+  .hero-story.is-static .hero-story__chapters {
+    opacity: 1;
+    transform: none;
+  }
+  .hero-story.is-static .hero-story__body {
+    opacity: 1;
+    height: auto;
+  }
+  .hero-story.is-static .hero-story__loader {
+    display: none;
+  }
+{% endstylesheet %}
+
+<script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script type="importmap">
+  {
+    "imports": {
+      "three": "{{ 'three.module.min.js' | asset_url }}"
+    }
+  }
+</script>
+<script type="module" src="{{ 'hero-3d.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "Hero Story 3D",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Industrial supply, refined."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "AI-driven sourcing. Verified provenance. Route-optimized dispatch — engineered for MRO teams that can't afford downtime."
+    },
+    {
+      "type": "text",
+      "id": "hint",
+      "label": "Scroll hint",
+      "default": "SCROLL TO DISCOVER OUR PROCESS"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_3d",
+      "label": "Enable 3D model",
+      "info": "Disable for a lightweight static hero.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "scroll_length",
+      "label": "Scroll length (px)",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "default": 4500
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Chapter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Sourcing"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "One call triggers verified sourcing. Craft, spec, and delivery window route directly to matched suppliers."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Hero Story 3D",
+      "blocks": [
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Sourcing",
+            "body": "One call triggers verified sourcing. Craft, spec, and delivery window route directly to matched suppliers. No RFQ ping-pong."
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Verification",
+            "body": "Every SKU passes spec compliance, provenance check, and quality gate before it enters your dispatch queue."
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Dispatch",
+            "body": "Route-optimized dispatch from nearest hub. Real-time SKU tracking. Consolidated shipping to cut freight cost."
+          }
+        },
+        {
+          "type": "chapter",
+          "settings": {
+            "title": "Delivery",
+            "body": "Site-ready delivery with QR-tagged manifest. Every crate arrives labeled, sorted, and audit-ready."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
