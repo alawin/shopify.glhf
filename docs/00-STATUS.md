@@ -1,6 +1,6 @@
 # STATUS & NEXT ACTIONS — baca ini kalau lupa
 
-_Update terakhir: 14 Juli 2026_
+_Update terakhir: 14 Juli 2026 (sore)_
 
 ## Project
 Shopify Hardware/Industrial theme — kolaborasi Jivan × Dwiki (50-50, belum ada perjanjian formal, sengaja).
@@ -13,8 +13,8 @@ Positioning: **"Marketing pages that impress. Storefront that sells. One theme, 
 - ❌ Belum ada: design pass Dwiki, port Liquid, aset final, mobile polish
 
 ## NEXT ACTION (urutan)
-1. **Kirim ke Dwiki** → link live + `docs/01-dwiki-visual-brief.md`. Tunggu design pass dia
-2. **De-risk Liquid** → bikin Shopify partner account + dev store (gratis, partners.shopify.com), port hero 3D jadi satu section Liquid, ukur Lighthouse. Ini penentu feasible/nggak buat Theme Store
+1. ~~Kirim ke Dwiki~~ ✅ (14 Jul) — nunggu design pass dia
+2. **De-risk Liquid** → Jivan kayaknya udah punya akun Shopify (verifikasi: login partners.shopify.com). Sisanya: bikin **dev store** dari partner dashboard, port hero 3D jadi section Liquid, ukur Lighthouse. Ini penentu feasible/nggak buat Theme Store
 3. **Aset** → ikutin `docs/02-envato-asset-brief.md` (Envato buat demo doang; yang di-bundle theme wajib CC0)
 4. **Polish** → mobile perf, fallback statis hero
 
