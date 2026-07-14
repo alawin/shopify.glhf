@@ -34,15 +34,25 @@ Done before this backlog existed. Demo sent, Dwiki confirmed and is actively wor
 ---
 
 #### E1.2 — De-risk the Liquid port (the live-or-die item)
-**Status:** `[in_progress]` (started 2026-07-14) | **Estimate:** 3 | **Depends on:** None (parallel with E1.1)
+**Status:** `[done]` (2026-07-14) | **Estimate:** 3 | **Depends on:** None (parallel with E1.1)
 
 Shopify partner account + dev store (free). Port ONLY the 3D hero as a Liquid section. Measure Lighthouse. This answers: "can this concept pass Theme Store review at all?"
 
 **Acceptance Criteria:**
-- [ ] Partner account + dev store live
-- [ ] Hero (3D drill + scroll behavior) works as a Liquid section with theme editor settings
-- [ ] Lighthouse mobile measured and recorded here (Theme Store requires strong scores)
-- [ ] Verdict written: port viable / port viable with static fallback / not viable, pivot to ThemeForest-only
+- [x] Partner account + dev store live (good-luck-have-fun-cmhwhkyg.myshopify.com)
+- [x] Hero (3D drill + scroll behavior) works as a Liquid section with theme editor settings — `theme/sections/hero-story.liquid`, verified rendering in headless Chrome on `shopify theme dev` preview
+- [x] Lighthouse mobile measured (2026-07-14, via local dev proxy — production CDN will score higher):
+      Performance **52**, A11y 88, FCP 2.0s, LCP 9.9s, TBT 510ms, CLS 0.
+      Theme Check: 40 files, 0 offenses.
+- [x] **VERDICT: port viable with static fallback + lazy-load.** The concept works in Liquid: schema-driven section, editor toggle, reduced-motion/no-WebGL static fallback all functional. Perf 52 is below the ~60 Theme Store bar but measured on a dev proxy with hot-reload scripts and a 690ms server response; the fix path is known and standard: (1) lazy-load the 714KB three.js bundle after LCP/on idle, (2) poster image so LCP lands on a static element, (3) defer GLB fetch until hero is near viewport. No architectural blocker found. NOT pivoting to ThemeForest-only.
+
+**Follow-up (new item E1.2b):** implement the three perf fixes above, re-measure on a production-like preview (theme push + preview URL, not the dev proxy).
+
+**Porting gotchas logged (for the full port later):**
+- esbuild IIFE: three's DRACOLoader uses top-level `new URL(..., import.meta.url)` — must `--define:import.meta.url='"https://cdn.shopify.com/"'` or the bundle dies on load
+- `data-enable-3d` does NOT map to `dataset.enable3d` (digit after hyphen) — use `getAttribute`
+- Import maps are unreliable on the theme dev proxy (its own injected scripts race them) — bundle instead
+- Rebuild command: `npm run build:theme` (in prototype/)
 
 ---
 
