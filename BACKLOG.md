@@ -2,6 +2,8 @@
 
 > Status flow: `todo → planned → in_progress → done`
 > Order below follows Jivan's own priority (2026-07-13). Item 2 is the live-or-die item.
+> **Kanban mirror (shareable with Dwiki):** Notion → GLHF wiki → "AXIS — Shopify Theme"
+> https://app.notion.com/p/AXIS-Shopify-Theme-39de227ef3e781319902c754a7cbfd39
 
 ---
 
@@ -80,8 +82,25 @@ Mobile perf + static hero fallback for weak devices. Only worth full effort if E
 
 ---
 
+## Epic 2: Full Liquid port (starts after Dwiki's design pass locks)
+
+**Goal:** Complete theme, submission-ready. All items `[backlog]`, owners in the Notion kanban.
+
+- E2.1 — Collection template + native filters (Search & Discovery)
+- E2.2 — PDP template: metafields spec table + volume pricing
+- E2.3 — Cart drawer: Cart AJAX, PO number (cart attributes), quote CTA
+- E2.4 — Predictive search UI
+- E2.5 — Header/footer sections + theme settings + design tokens
+- E2.6 — Implement Dwiki's design pass across the theme
+- E2.7 — Style presets, 2-3 variants (Theme Store requirement) — Dwiki
+- E2.8 — A11y + Lighthouse pass on all templates
+- E2.9 — Theme docs + support channel (submission requirement) — Jivan
+- E2.10 — Theme Store submission — Jivan
+
+---
+
 ## Open decisions (blocked on Jivan, mirrored in AGENTS.md)
 - [ ] Final theme name
 - [ ] Envato non-exclusive vs exclusive
 - [ ] Pricing per platform
-- [ ] Polish-first vs Liquid-first (E1.2 result should decide this one honestly)
+- [x] Polish-first vs Liquid-first — resolved by E1.2: Liquid port is viable, so both tracks proceed (E1.2b/E1.4 polish + E2 port after design lock)

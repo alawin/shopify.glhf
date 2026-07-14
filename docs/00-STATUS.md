@@ -1,6 +1,9 @@
 # STATUS & NEXT ACTIONS — baca ini kalau lupa
 
-_Update terakhir: 14 Juli 2026 (sore)_
+_Update terakhir: 14 Juli 2026 (malam)_
+
+**Kanban (share ke Dwiki dari sini):** https://app.notion.com/p/AXIS-Shopify-Theme-39de227ef3e781319902c754a7cbfd39
+**Push ke Notion:** JANGAN pakai MCP Notion — pakai pola script Python langsung ke api.notion.com (contoh proven: `KataBoost/docs/Sprint9/notion-push.py`)
 
 ## Project
 Shopify Hardware/Industrial theme — kolaborasi Jivan × Dwiki (50-50, belum ada perjanjian formal, sengaja).
